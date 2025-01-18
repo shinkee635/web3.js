@@ -19,7 +19,6 @@ jobs:
           cache: yarn
       - run: yarn install --ignore-scripts
       - run: yarn build
-      - run: tar -czf web3jspackages.tar.gz packages
       - uses: actions/upload-artifact@v3
         with:
           name: web3jspackages.tar.gz
