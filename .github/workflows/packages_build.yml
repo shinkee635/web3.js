@@ -22,4 +22,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: web3js
-          path: ../../web3.js
+          path: /home/runner/work/web3.js
