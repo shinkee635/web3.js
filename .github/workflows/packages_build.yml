@@ -22,7 +22,7 @@ jobs:
       - run: touch .empty2
       - uses: actions/upload-artifact@v3
         with:
-          name: web3jspackages.zip
-          path: 
+          name: web3jspackages
+          path: |
             packages
             .empty2
