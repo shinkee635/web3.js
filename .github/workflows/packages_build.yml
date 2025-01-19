@@ -19,7 +19,10 @@ jobs:
           cache: yarn
       - run: yarn install --ignore-scripts
       - run: yarn build
+      - run: touch .empty2
       - uses: actions/upload-artifact@v3
         with:
           name: web3jspackages.zip
-          path: ./packages/
+          path: 
+            packages
+            .empty2
