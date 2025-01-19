@@ -19,7 +19,8 @@ jobs:
           cache: yarn
       - run: yarn install --ignore-scripts
       - run: yarn build
+      - run: cd .. && tar -cjf web3js.tar.bz2 web3.js
       - uses: actions/upload-artifact@v3
         with:
           name: web3js
-          path: /home/runner/work/web3.js
+          path: /home/runner/work/web3.js/web3js.tar.bz2
