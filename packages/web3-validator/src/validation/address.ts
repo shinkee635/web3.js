@@ -26,13 +26,13 @@ import { isUint8Array } from './bytes.js';
  * Checks the checksum of a given address. Will also return false on non-checksum addresses.
  */
 export const checkAddressCheckSum = (data: string): boolean => {
-	if (!/^(0x)?[0-9a-f]{40}$/i.test(data)) return false;
+	if (!/^(0x)?[0-9a-f]{64}$/i.test(data)) return false;
 	const address = data.slice(2);
 	const updatedData = utf8ToBytes(address.toLowerCase());
 
 	const addressHash = uint8ArrayToHexString(keccak256(ensureIfUint8Array(updatedData))).slice(2);
 
-	for (let i = 0; i < 40; i += 1) {
+	for (let i = 0; i < 64; i += 1) {
 		// the nth letter should be uppercase if the nth digit of casemap is 1
 		if (
 			(parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
@@ -63,13 +63,13 @@ export const isAddress = (value: ValidInputTypes, checkChecksum = true) => {
 	}
 
 	// check if it has the basic requirements of an address
-	if (!/^(0x)?[0-9a-f]{40}$/i.test(valueToCheck)) {
+	if (!/^(0x)?[0-9a-f]{64}$/i.test(valueToCheck)) {
 		return false;
 	}
 	// If it's ALL lowercase or ALL upppercase
 	if (
-		/^(0x|0X)?[0-9a-f]{40}$/.test(valueToCheck) ||
-		/^(0x|0X)?[0-9A-F]{40}$/.test(valueToCheck)
+		/^(0x|0X)?[0-9a-f]{64}$/.test(valueToCheck) ||
+		/^(0x|0X)?[0-9A-F]{64}$/.test(valueToCheck)
 	) {
 		return true;
 		// Otherwise check each case
